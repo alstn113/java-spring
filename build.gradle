@@ -18,10 +18,18 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // DB
-    implementation 'org.postgresql:postgresql:'
+    runtimeOnly 'com.h2database:h2'
+
+    // lombok plugin
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 }
 
 tasks.named('test') {
