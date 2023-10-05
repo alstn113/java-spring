@@ -22,14 +22,8 @@ dependencies {
     // DB
     runtimeOnly 'com.h2database:h2'
 
-    // lombok plugin
-    compileOnly('org.projectlombok:lombok')
-    annotationProcessor('org.projectlombok:lombok')
-
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation('org.projectlombok:lombok')
-    testAnnotationProcessor('org.projectlombok:lombok')
 }
 
 tasks.named('test') {
