@@ -1,4 +1,7 @@
 package com.example.demo.repository;
 
-public class PostRepository {
+import com.example.demo.domain.post.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PostRepository extends JpaRepository<Post, Long> {
 }
