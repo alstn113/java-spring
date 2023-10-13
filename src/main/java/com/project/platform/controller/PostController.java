@@ -23,21 +23,18 @@ public class PostController {
     }
 
     @PostMapping
-    @ResponseBody
     public ResponseEntity<Post> createPost(@RequestBody PostCreateRequest postCreateRequest) {
         Post post = postService.createPost(postCreateRequest);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 
     @GetMapping
-    @ResponseBody
     public ResponseEntity<List<Post>> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @ResponseBody
     public ResponseEntity<Optional<Post>> getPostById(@PathVariable Long id) {
         Optional<Post> post = postService.getPostById(id);
         if (post.isPresent()) {
@@ -50,7 +47,6 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseBody
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
     }
