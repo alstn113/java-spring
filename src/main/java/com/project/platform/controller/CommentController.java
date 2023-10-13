@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.project.platform.controller;
 
 
 public class CommentController {

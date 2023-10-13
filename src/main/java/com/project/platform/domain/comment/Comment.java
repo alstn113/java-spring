@@ -1,6 +1,6 @@
-package com.example.demo.domain.comment;
+package com.project.platform.domain.comment;
 
-import com.example.demo.domain.post.Post;
+import com.project.platform.domain.post.Post;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

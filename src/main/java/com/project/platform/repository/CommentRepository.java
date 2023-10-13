@@ -1,7 +1,7 @@
-package com.example.demo.repository;
+package com.project.platform.repository;
 
 
-import com.example.demo.domain.comment.Comment;
+import com.project.platform.domain.comment.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

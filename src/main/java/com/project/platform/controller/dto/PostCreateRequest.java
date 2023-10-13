@@ -1,6 +1,6 @@
-package com.example.demo.controller.dto;
+package com.project.platform.controller.dto;
 
-import com.example.demo.domain.post.Post;
+import com.project.platform.domain.post.Post;
 
 public record PostCreateRequest(String title, String content) {
     public Post toPost() {

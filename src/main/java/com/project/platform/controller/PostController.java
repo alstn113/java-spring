@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.project.platform.controller;
 
-import com.example.demo.controller.dto.PostCreateRequest;
-import com.example.demo.domain.post.Post;
-import com.example.demo.service.PostService;
+import com.project.platform.controller.dto.PostCreateRequest;
+import com.project.platform.domain.post.Post;
+import com.project.platform.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,16 +30,27 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    @ResponseBody
+    public ResponseEntity<List<Post>> getAllPosts() {
+        List<Post> posts = postService.getAllPosts();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Optional<Post> getPostById(@PathVariable Long id) {
-        return postService.getPostById(id);
+    @ResponseBody
+    public ResponseEntity<Optional<Post>> getPostById(@PathVariable Long id) {
+        Optional<Post> post = postService.getPostById(id);
+        if (post.isPresent()) {
+            return new ResponseEntity<>(post, HttpStatus.OK);
+        } else {
+            // 이게 아닌듯...
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @DeleteMapping("/{id}")
+    @ResponseBody
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
     }

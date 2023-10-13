@@ -1,6 +1,6 @@
-package com.example.demo.domain.post;
+package com.project.platform.domain.post;
 
-import com.example.demo.domain.comment.Comment;
+import com.project.platform.domain.comment.Comment;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -8,8 +8,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.Objects.hash;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -81,7 +79,7 @@ public class Post {
 
     @Override
     public int hashCode() {
-        return hash(id);
+        return Objects.hash(id);
     }
 
 }
