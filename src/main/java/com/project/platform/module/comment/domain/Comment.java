@@ -1,11 +1,9 @@
 package com.project.platform.module.comment.domain;
 
+import com.project.platform.module.post.domain.Post;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
-
-import com.project.platform.module.post.domain.Post;
 
 import static java.util.Objects.hash;
 
@@ -18,12 +16,25 @@ public class Comment {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime createdAt;
-
     @ManyToOne
     private Post post;
 
     protected Comment() {
+    }
+
+    public Comment(
+            final Long id,
+            final String content,
+            final Post post) {
+        this.id = id;
+        this.content = content;
+        this.post = post;
+    }
+
+    public Comment(
+            final String content,
+            final Post post) {
+        this(null, content, post);
     }
 
     public Long getId() {
@@ -34,30 +45,8 @@ public class Comment {
         return content;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
     public Post getPost() {
         return post;
-    }
-
-    public Comment(
-            final Long id,
-            final String content,
-            final LocalDateTime createdAt,
-            final Post post) {
-        this.id = id;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.post = post;
-    }
-
-    public Comment(
-            final String content,
-            final LocalDateTime createdAt,
-            final Post post) {
-        this(null, content, createdAt, post);
     }
 
     @Override

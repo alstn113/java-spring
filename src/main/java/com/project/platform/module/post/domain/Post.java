@@ -1,18 +1,14 @@
 package com.project.platform.module.post.domain;
 
-import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import com.project.platform.global.common.domain.BaseEntity;
 import com.project.platform.module.comment.domain.Comment;
+import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Post {
+public class Post extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,24 +19,20 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @CreatedDate
-    private LocalDateTime createdAt;
-
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     protected Post() {
     }
 
-    public Post(final Long id, final String title, final String content, final LocalDateTime createdAt) {
+    public Post(final Long id, final String title, final String content) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.createdAt = createdAt;
     }
 
     public Post(final String title, final String content) {
-        this(null, title, content, null);
+        this(null, title, content);
     }
 
     public Long getId() {
@@ -55,9 +47,6 @@ public class Post {
         return content;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
 
     public List<Comment> getComments() {
         return comments;
