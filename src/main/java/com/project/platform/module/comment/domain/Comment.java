@@ -1,13 +1,13 @@
-package com.project.platform.domain.comment;
+package com.project.platform.module.comment.domain;
 
-import com.project.platform.domain.post.Post;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static java.util.Objects.hash;
+import com.project.platform.module.post.domain.Post;
 
+import static java.util.Objects.hash;
 
 @Entity
 public class Comment {
@@ -46,8 +46,7 @@ public class Comment {
             final Long id,
             final String content,
             final LocalDateTime createdAt,
-            final Post post
-    ) {
+            final Post post) {
         this.id = id;
         this.content = content;
         this.createdAt = createdAt;
@@ -57,15 +56,16 @@ public class Comment {
     public Comment(
             final String content,
             final LocalDateTime createdAt,
-            final Post post
-    ) {
+            final Post post) {
         this(null, content, createdAt, post);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || !getClass().equals(o.getClass())) return false;
+        if (this == o)
+            return true;
+        if (o == null || !getClass().equals(o.getClass()))
+            return false;
         final Comment comment = (Comment) o;
         return Objects.equals(id, comment.id);
     }

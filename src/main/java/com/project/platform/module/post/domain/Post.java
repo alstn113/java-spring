@@ -1,9 +1,10 @@
-package com.project.platform.domain.post;
+package com.project.platform.module.post.domain;
 
-import com.project.platform.domain.comment.Comment;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.project.platform.module.comment.domain.Comment;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,7 +29,6 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
-
     protected Post() {
     }
 
@@ -38,7 +38,6 @@ public class Post {
         this.content = content;
         this.createdAt = createdAt;
     }
-
 
     public Post(final String title, final String content) {
         this(null, title, content, null);
@@ -63,7 +62,6 @@ public class Post {
     public List<Comment> getComments() {
         return comments;
     }
-
 
     @Override
     public boolean equals(final Object o) {
