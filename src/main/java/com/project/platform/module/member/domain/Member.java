@@ -1,4 +1,4 @@
-package com.project.platform.module.user.domain;
+package com.project.platform.module.member.domain;
 
 
 import com.project.platform.global.common.domain.BaseEntity;
@@ -13,7 +13,7 @@ import static jakarta.persistence.CascadeType.MERGE;
 import static jakarta.persistence.CascadeType.PERSIST;
 
 @Entity
-public class User extends BaseEntity {
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,20 +24,20 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {MERGE, PERSIST})
+    @OneToMany(mappedBy = "member", orphanRemoval = true, cascade = {MERGE, PERSIST})
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = {MERGE, PERSIST})
+    @OneToMany(mappedBy = "member", orphanRemoval = true, cascade = {MERGE, PERSIST})
     private List<Comment> comments = new ArrayList<>();
 
-    protected User() {
+    protected Member() {
     }
 
-    public User(String email, String password) {
+    public Member(String email, String password) {
         this(null, email, password);
     }
 
-    public User(Long id, String email, String password) {
+    public Member(Long id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;

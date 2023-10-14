@@ -1,6 +1,7 @@
 package com.project.platform.module.comment.domain;
 
 import com.project.platform.module.post.domain.Post;
+import com.project.platform.module.member.domain.Member;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -17,23 +18,24 @@ public class Comment {
     private String content;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
+    private Member member;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Post post;
+
 
     protected Comment() {
     }
 
-    public Comment(
-            final Long id,
-            final String content,
-            final Post post) {
+    public Comment(final Long id, final String content, final Post post) {
         this.id = id;
         this.content = content;
         this.post = post;
     }
 
-    public Comment(
-            final String content,
-            final Post post) {
+    public Comment(final String content, final Post post) {
         this(null, content, post);
     }
 
@@ -51,10 +53,8 @@ public class Comment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || !getClass().equals(o.getClass()))
-            return false;
+        if (this == o) return true;
+        if (o == null || !getClass().equals(o.getClass())) return false;
         final Comment comment = (Comment) o;
         return Objects.equals(id, comment.id);
     }

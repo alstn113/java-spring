@@ -2,6 +2,7 @@ package com.project.platform.module.post.domain;
 
 import com.project.platform.global.common.domain.BaseEntity;
 import com.project.platform.module.comment.domain.Comment;
+import com.project.platform.module.member.domain.Member;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,8 +20,14 @@ public class Post extends BaseEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Member member;
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
+
+
 
     protected Post() {
     }
