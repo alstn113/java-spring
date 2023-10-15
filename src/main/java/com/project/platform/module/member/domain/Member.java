@@ -5,6 +5,7 @@ import com.project.platform.global.common.domain.BaseEntity;
 import com.project.platform.module.comment.domain.Comment;
 import com.project.platform.module.post.domain.Post;
 import jakarta.persistence.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +62,10 @@ public class Member extends BaseEntity {
 
     public List<Comment> getComments() {
         return comments;
+    }
+
+    public Member hashPassword(PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(this.password);
+        return this;
     }
 }

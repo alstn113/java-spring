@@ -1,8 +1,12 @@
 package com.project.platform.module.auth.presentation;
 
 import com.project.platform.module.auth.application.AuthService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.project.platform.module.auth.presentation.dto.LoginRequest;
+import com.project.platform.module.auth.presentation.dto.SignupRequest;
+import com.project.platform.module.member.domain.Member;
+import com.project.platform.module.member.presentation.dto.MemberResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -14,24 +18,24 @@ public class AuthController {
         this.authService = authService;
     }
 
-//    @PostMapping("/signup")
-//    public ResponseEntity<MemberResponse> signup(@RequestBody final SignupRequest signupRequest) {
-//        Member newMember = authService.signup(signupRequest);
-//        return MemberResponse.fromMember(newMember);
-//
-//    }
-//
-//    @PostMapping("/login")
-//    public ResponseEntity<MemberResponse> login(@RequestBody final LoginRequest loginRequest) {
-//        Member authenticatedMember = authService.login(loginRequest);
-//        return MemberResponse.fromMember(authenticatedMember);
-//    }
-//
-//    @DeleteMapping("/logout")
-//    public void logout() {
-//
-//
-//    }
+    @PostMapping("/signup")
+    public ResponseEntity<MemberResponse> signup(@RequestBody final SignupRequest signupRequest) {
+        Member newMember = authService.signup(signupRequest);
+        return ResponseEntity.ok(MemberResponse.fromMember(newMember));
+
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<MemberResponse> login(@RequestBody final LoginRequest loginRequest) {
+        Member authenticatedMember = authService.login(loginRequest);
+        return ResponseEntity.ok(MemberResponse.fromMember(authenticatedMember));
+    }
+
+    @DeleteMapping("/logout")
+    public void logout() {
+
+
+    }
 
 
 }
