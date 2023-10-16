@@ -1,7 +1,7 @@
 package com.project.platform.module.member.domain;
 
 
-import com.project.platform.global.common.domain.BaseEntity;
+import com.project.platform.common.domain.BaseEntity;
 import com.project.platform.module.comment.domain.Comment;
 import com.project.platform.module.post.domain.Post;
 import jakarta.persistence.*;

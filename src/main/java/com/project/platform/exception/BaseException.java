@@ -1,4 +1,4 @@
-package com.project.platform.global.exception;
+package com.project.platform.exception;
 
 public class BaseException extends RuntimeException {
     private final ErrorResponse errorResponse;

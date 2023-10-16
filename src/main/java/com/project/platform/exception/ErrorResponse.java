@@ -1,4 +1,4 @@
-package com.project.platform.global.exception;
+package com.project.platform.exception;
 
 public class ErrorResponse {
     private final String code;

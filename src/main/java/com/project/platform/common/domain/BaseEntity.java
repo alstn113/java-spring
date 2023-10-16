@@ -1,4 +1,4 @@
-package com.project.platform.global.common.domain;
+package com.project.platform.common.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

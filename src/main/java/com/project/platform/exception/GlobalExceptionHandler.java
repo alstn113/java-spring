@@ -1,4 +1,4 @@
-package com.project.platform.global.exception;
+package com.project.platform.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

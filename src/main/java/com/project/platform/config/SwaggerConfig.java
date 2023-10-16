@@ -1,4 +1,4 @@
-package com.project.platform.global.config;
+package com.project.platform.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

@@ -1,4 +1,4 @@
-package com.project.platform.global.exception;
+package com.project.platform.exception;
 
 public class BadRequestException extends BaseException {
     public BadRequestException(final ErrorCode errorCode) {
