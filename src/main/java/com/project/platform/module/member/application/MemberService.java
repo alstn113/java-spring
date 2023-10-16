@@ -20,4 +20,6 @@ public class MemberService {
                 .findById(memberId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 회원입니다."));
     }
+
+
 }

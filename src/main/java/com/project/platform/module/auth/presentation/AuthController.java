@@ -5,6 +5,7 @@ import com.project.platform.module.auth.presentation.dto.LoginRequest;
 import com.project.platform.module.auth.presentation.dto.SignupRequest;
 import com.project.platform.module.member.domain.Member;
 import com.project.platform.module.member.presentation.dto.MemberResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +27,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<MemberResponse> login(@RequestBody final LoginRequest loginRequest) {
+    public ResponseEntity<MemberResponse> login(@RequestBody final LoginRequest loginRequest,
+                                                final HttpServletResponse response) {
         Member authenticatedMember = authService.login(loginRequest);
         return ResponseEntity.ok(MemberResponse.fromMember(authenticatedMember));
     }
 
     @DeleteMapping("/logout")
     public void logout() {
-
 
     }
 
