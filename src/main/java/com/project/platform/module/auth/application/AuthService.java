@@ -1,5 +1,6 @@
 package com.project.platform.module.auth.application;
 
+import com.project.platform.module.auth.domain.JwtTokens;
 import com.project.platform.module.auth.presentation.dto.LoginRequest;
 import com.project.platform.module.auth.presentation.dto.SignupRequest;
 import com.project.platform.module.member.domain.Member;
@@ -12,10 +13,12 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class AuthService {
     private final MemberRepository memberRepository;
+    private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(MemberRepository memberRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
+        this.jwtProvider = jwtProvider;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -31,7 +34,7 @@ public class AuthService {
         return memberRepository.save(member);
     }
 
-    public Member login(LoginRequest loginRequest) {
+    public JwtTokens login(LoginRequest loginRequest) {
         Member member = memberRepository.findByEmail(loginRequest.email());
         if (member == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 이메일입니다.");
@@ -41,6 +44,6 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다.");
         }
 
-        return member;
+        return jwtProvider.generateTokens(member.getId().toString());
     }
 }
