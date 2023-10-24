@@ -15,9 +15,9 @@ spring:
       ddl-auto: update
   auth:
     jwt:
-      secretKey: jwt-secret-key
-      accessTokenExpired: 360000
-      refreshTokenExpired: 36000000
+      secretKey: jwt-secret-key-1234567890-jwt-secret-key-!@#$%^&*()_+
+      accessTokenExpired: 3600000 # 1hour
+      refreshTokenExpired: 604800000 # 7days
 
 server:
   port: 8080
