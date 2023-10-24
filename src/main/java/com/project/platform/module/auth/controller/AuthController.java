@@ -6,6 +6,7 @@ import com.project.platform.module.auth.domain.JwtTokens;
 import com.project.platform.module.auth.dto.AccessTokenResponse;
 import com.project.platform.module.auth.dto.LoginRequest;
 import com.project.platform.module.auth.dto.SignupRequest;
+import com.project.platform.module.auth.resolver.AuthGuard;
 import com.project.platform.module.auth.service.AuthService;
 import com.project.platform.module.auth.util.CookieUtil;
 import com.project.platform.module.member.domain.Member;
@@ -34,6 +35,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @AuthGuard
     public ResponseEntity<AccessTokenResponse> login(final HttpServletResponse response,
                                                      @RequestBody final LoginRequest loginRequest) {
         JwtTokens jwtTokens = authService.login(loginRequest);
