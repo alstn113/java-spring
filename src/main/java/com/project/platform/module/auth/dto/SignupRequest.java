@@ -1,4 +1,4 @@
-package com.project.platform.module.auth.presentation.dto;
+package com.project.platform.module.auth.dto;
 
 import com.project.platform.module.member.domain.Member;
 

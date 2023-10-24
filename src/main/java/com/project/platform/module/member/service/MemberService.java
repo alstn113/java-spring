@@ -1,7 +1,8 @@
-package com.project.platform.module.member.application;
+package com.project.platform.module.member.service;
 
 import com.project.platform.module.member.domain.Member;
-import com.project.platform.module.member.respository.MemberRepository;
+import com.project.platform.module.member.repository.MemberRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,12 +15,10 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-
     public Member getMemberByIdOrElseThrow(final Long memberId) {
         return memberRepository
                 .findById(memberId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "존재하지 않는 회원입니다."));
     }
-
 
 }

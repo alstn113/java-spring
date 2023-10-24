@@ -1,8 +1,8 @@
-package com.project.platform.module.post.application;
+package com.project.platform.module.post.service;
 
 import com.project.platform.module.post.domain.Post;
-import com.project.platform.module.post.presentation.dto.PostCreateRequest;
-import com.project.platform.module.post.respository.PostRepository;
+import com.project.platform.module.post.dto.PostCreateRequest;
+import com.project.platform.module.post.repository.PostRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

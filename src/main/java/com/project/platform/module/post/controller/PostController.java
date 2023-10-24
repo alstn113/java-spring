@@ -1,8 +1,9 @@
-package com.project.platform.module.post.presentation;
+package com.project.platform.module.post.controller;
 
-import com.project.platform.module.post.application.PostService;
 import com.project.platform.module.post.domain.Post;
-import com.project.platform.module.post.presentation.dto.PostCreateRequest;
+import com.project.platform.module.post.dto.PostCreateRequest;
+import com.project.platform.module.post.service.PostService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

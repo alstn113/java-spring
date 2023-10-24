@@ -1,4 +1,4 @@
-package com.project.platform.module.member.presentation.dto;
+package com.project.platform.module.member.dto;
 
 import com.project.platform.module.member.domain.Member;
 

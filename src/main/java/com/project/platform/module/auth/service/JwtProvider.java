@@ -1,4 +1,4 @@
-package com.project.platform.module.auth.application;
+package com.project.platform.module.auth.service;
 
 import com.project.platform.exception.ErrorCode;
 import com.project.platform.exception.ExpiredPeriodJwtException;
@@ -20,13 +20,10 @@ public class JwtProvider {
     private final long accessTokenExpired;
     private final long refreshTokenExpired;
 
-
-
     public JwtProvider(
             @Value("${spring.auth.jwt.secretKey}") final String key,
             @Value("${spring.auth.jwt.accessTokenExpired}") final long accessTokenExpired,
-            @Value("${spring.auth.jwt.refreshTokenExpired}") final long refreshTokenExpired
-    ) {
+            @Value("${spring.auth.jwt.refreshTokenExpired}") final long refreshTokenExpired) {
         this.secretKey = Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
         this.accessTokenExpired = accessTokenExpired;
         this.refreshTokenExpired = refreshTokenExpired;
@@ -37,7 +34,6 @@ public class JwtProvider {
         final String accessToken = createToken(subject, accessTokenExpired);
         return new JwtTokens(refreshToken, accessToken);
     }
-
 
     private String createToken(final String subject, final long validityInMilliseconds) {
         final Date now = new Date();
