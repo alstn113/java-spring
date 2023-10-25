@@ -7,6 +7,7 @@ import com.project.platform.module.auth.dto.AccessTokenResponse;
 import com.project.platform.module.auth.dto.LoginRequest;
 import com.project.platform.module.auth.dto.SignupRequest;
 import com.project.platform.module.auth.resolver.AuthGuard;
+import com.project.platform.module.auth.resolver.CurrentUser;
 import com.project.platform.module.auth.service.AuthService;
 import com.project.platform.module.auth.util.CookieUtil;
 import com.project.platform.module.member.domain.Member;
@@ -46,8 +47,12 @@ public class AuthController {
 
     @DeleteMapping("/logout")
     @AuthGuard
-    public ResponseEntity<Void> logout(final HttpServletResponse response) {
+    public ResponseEntity<Void> logout(
+            final HttpServletResponse response,
+            @CurrentUser final Long memberId
+    ) {
         CookieUtil.clearRefreshTokenCookie(response);
+        System.out.println("memberId = " + memberId);
         return ResponseEntity.ok().build();
     }
 }
