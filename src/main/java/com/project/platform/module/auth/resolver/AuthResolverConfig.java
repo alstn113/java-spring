@@ -6,16 +6,16 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class LoginResolverConfig implements WebMvcConfigurer {
+public class AuthResolverConfig implements WebMvcConfigurer {
 
-    private final LoginArgumentResolver loginArgumentResolver;
+    private final AuthArgumentResolver authArgumentResolver;
 
-    public LoginResolverConfig(LoginArgumentResolver loginArgumentResolver) {
-        this.loginArgumentResolver = loginArgumentResolver;
+    public AuthResolverConfig(AuthArgumentResolver authArgumentResolver) {
+        this.authArgumentResolver = authArgumentResolver;
     }
 
     @Override
     public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(loginArgumentResolver);
+        resolvers.add(authArgumentResolver);
     }
 }

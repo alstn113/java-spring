@@ -1,12 +1,14 @@
 package com.project.platform.module.auth.resolver;
 
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import java.lang.annotation.ElementType;
+import io.swagger.v3.oas.annotations.Hidden;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-@Target(ElementType.METHOD)
+@Hidden
+@Target(PARAMETER)
 @Retention(RUNTIME)
-public @interface AuthGuard {
+public @interface Auth {
 }
