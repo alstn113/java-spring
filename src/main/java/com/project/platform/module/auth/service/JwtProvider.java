@@ -51,6 +51,10 @@ public class JwtProvider {
                 .compact();
     }
 
+    public void validateAccessToken(final String accessToken) {
+        validateToken(accessToken);
+    }
+
     public void validateTokens(final String accessToken, final String refreshToken) {
         validateToken(accessToken);
         validateToken(refreshToken);

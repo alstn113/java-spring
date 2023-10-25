@@ -35,16 +35,17 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @AuthGuard
     public ResponseEntity<AccessTokenResponse> login(final HttpServletResponse response,
                                                      @RequestBody final LoginRequest loginRequest) {
         JwtTokens jwtTokens = authService.login(loginRequest);
         CookieUtil.setRefreshTokenCookie(response, jwtTokens.refreshToken());
+
         return ResponseEntity.status(CREATED).body(new AccessTokenResponse(jwtTokens.accessToken()));
     }
 
 
     @DeleteMapping("/logout")
+    @AuthGuard
     public ResponseEntity<Void> logout(final HttpServletResponse response) {
         CookieUtil.clearRefreshTokenCookie(response);
         return ResponseEntity.ok().build();
