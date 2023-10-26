@@ -4,6 +4,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 import com.project.platform.exception.ErrorCode;
 import com.project.platform.exception.InvalidTokenException;
+import com.project.platform.module.auth.domain.Accessor;
 import com.project.platform.module.auth.service.JwtProvider;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -22,16 +23,22 @@ public class AuthArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(Auth.class);
+        return parameter.withContainingClass(Long.class).hasParameterAnnotation(Auth.class);
     }
 
     @Override
-    public Long resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
-                                NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
+    public Accessor resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
+                                    NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         final String header = webRequest.getHeader(AUTHORIZATION);
-        final String accessToken = extractAccessTokenFromHeader(header);
-        jwtProvider.validateAccessToken(accessToken);
-        return Long.valueOf(jwtProvider.getSubject(accessToken));
+
+        try {
+            final String accessToken = extractAccessTokenFromHeader(header);
+            jwtProvider.validateAccessToken(accessToken);
+            final Long memberId = Long.valueOf(jwtProvider.getSubject(accessToken));
+            return Accessor.member(memberId);
+        } catch (final InvalidTokenException e) {
+            return Accessor.guest();
+        }
     }
 
     private String extractAccessTokenFromHeader(String header) {
