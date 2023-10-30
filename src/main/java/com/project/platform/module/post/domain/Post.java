@@ -1,10 +1,17 @@
 package com.project.platform.module.post.domain;
 
-import com.project.platform.common.domain.BaseEntity;
+import com.project.platform.common.BaseEntity;
 import com.project.platform.module.comment.domain.Comment;
 import com.project.platform.module.member.domain.Member;
-import jakarta.persistence.*;
-
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,19 +34,25 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<PostLike> postLikes;
 
 
     protected Post() {
     }
 
-    public Post(final Long id, final String title, final String content) {
+    public Post(final Long id, final String title, final String content, final Member member,
+                final List<Comment> comments, final List<PostLike> postLikes) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.member = member;
+        this.comments = comments;
+        this.postLikes = postLikes;
     }
 
     public Post(final String title, final String content) {
-        this(null, title, content);
+        this(null, title, content, null, null, null);
     }
 
     public Long getId() {
@@ -54,6 +67,13 @@ public class Post extends BaseEntity {
         return content;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
+    public List<PostLike> getPostLikes() {
+        return postLikes;
+    }
 
     public List<Comment> getComments() {
         return comments;

@@ -1,13 +1,13 @@
 package com.project.platform.module.post.application;
 
+import com.project.platform.exception.BadRequestException;
+import com.project.platform.exception.ErrorCode;
 import com.project.platform.module.post.domain.Post;
-import com.project.platform.module.post.presentation.dto.PostCreateRequest;
 import com.project.platform.module.post.domain.repository.PostRepository;
-
-import org.springframework.stereotype.Service;
-
+import com.project.platform.module.post.dto.PostCreateRequest;
+import com.project.platform.module.post.dto.PostResponse;
 import java.util.List;
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
@@ -18,18 +18,23 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public Post createPost(PostCreateRequest postCreateRequest) {
+    public PostResponse createPost(PostCreateRequest postCreateRequest) {
         Post post = postCreateRequest.toPost();
         postRepository.save(post);
-        return post;
+        return PostResponse.fromPost(post);
     }
 
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<PostResponse> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream()
+                .map(PostResponse::fromPost)
+                .toList();
     }
 
-    public Optional<Post> getPostById(Long id) {
-        return postRepository.findById(id);
+    public PostResponse getPostById(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException(ErrorCode.POST_NOT_FOUND));
+        return PostResponse.fromPost(post);
     }
 
     public void deletePost(Long id) {

@@ -1,4 +1,4 @@
-package com.project.platform.module.post.presentation.dto;
+package com.project.platform.module.post.dto;
 
 import com.project.platform.module.post.domain.Post;
 

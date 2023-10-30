@@ -1,8 +1,8 @@
 package com.project.platform.module.auth.application;
 
 import com.project.platform.module.auth.domain.JwtTokens;
-import com.project.platform.module.auth.presentation.dto.LoginRequest;
-import com.project.platform.module.auth.presentation.dto.SignupRequest;
+import com.project.platform.module.auth.dto.LoginRequest;
+import com.project.platform.module.auth.dto.SignupRequest;
 import com.project.platform.module.member.domain.Member;
 import com.project.platform.module.member.domain.repository.MemberRepository;
 import org.springframework.http.HttpStatus;

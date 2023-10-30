@@ -1,15 +1,17 @@
 package com.project.platform.module.post.presentation;
 
-import com.project.platform.module.post.domain.Post;
-import com.project.platform.module.post.presentation.dto.PostCreateRequest;
 import com.project.platform.module.post.application.PostService;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import com.project.platform.module.post.dto.PostCreateRequest;
+import com.project.platform.module.post.dto.PostResponse;
 import java.util.List;
-import java.util.Optional;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/posts")
@@ -22,31 +24,26 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody PostCreateRequest postCreateRequest) {
-        Post post = postService.createPost(postCreateRequest);
-        return new ResponseEntity<>(post, HttpStatus.CREATED);
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostCreateRequest postCreateRequest) {
+        PostResponse postResponse = postService.createPost(postCreateRequest);
+        return ResponseEntity.ok(postResponse);
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> getAllPosts() {
-        List<Post> posts = postService.getAllPosts();
-        return new ResponseEntity<>(posts, HttpStatus.OK);
+    public ResponseEntity<List<PostResponse>> getAllPosts() {
+        List<PostResponse> postResponses = postService.getAllPosts();
+        return ResponseEntity.ok(postResponses);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Post>> getPostById(@PathVariable Long id) {
-        Optional<Post> post = postService.getPostById(id);
-        if (post.isPresent()) {
-            return new ResponseEntity<>(post, HttpStatus.OK);
-        } else {
-            // 이게 아닌듯...
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+    public ResponseEntity<PostResponse> getPostById(@PathVariable Long id) {
+        PostResponse postResponse = postService.getPostById(id);
+        return ResponseEntity.ok(postResponse);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         postService.deletePost(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -4,7 +4,7 @@ package com.project.platform.module.member.domain;
 import static jakarta.persistence.CascadeType.MERGE;
 import static jakarta.persistence.CascadeType.PERSIST;
 
-import com.project.platform.common.domain.BaseEntity;
+import com.project.platform.common.BaseEntity;
 import com.project.platform.module.comment.domain.Comment;
 import com.project.platform.module.post.domain.Post;
 import jakarta.persistence.Column;

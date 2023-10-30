@@ -2,14 +2,14 @@ package com.project.platform.module.auth.presentation;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
-import com.project.platform.module.auth.domain.JwtTokens;
-import com.project.platform.module.auth.presentation.dto.AccessTokenResponse;
-import com.project.platform.module.auth.presentation.dto.LoginRequest;
-import com.project.platform.module.auth.presentation.dto.SignupRequest;
 import com.project.platform.module.auth.application.AuthService;
+import com.project.platform.module.auth.domain.JwtTokens;
+import com.project.platform.module.auth.dto.AccessTokenResponse;
+import com.project.platform.module.auth.dto.LoginRequest;
+import com.project.platform.module.auth.dto.SignupRequest;
 import com.project.platform.module.auth.presentation.util.CookieUtil;
 import com.project.platform.module.member.domain.Member;
-import com.project.platform.module.member.presentation.dto.MemberResponse;
+import com.project.platform.module.member.dto.MemberResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
