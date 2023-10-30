@@ -6,7 +6,6 @@ import com.project.platform.module.auth.dto.SignupRequest;
 import com.project.platform.module.member.domain.Member;
 import com.project.platform.module.member.domain.repository.MemberRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
