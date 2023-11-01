@@ -5,6 +5,8 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import com.project.platform.domain.auth.domain.Accessor;
 import com.project.platform.domain.auth.service.JwtProvider;
 import com.project.platform.exception.ErrorCode;
+import com.project.platform.exception.UnauthorizedException;
+import io.jsonwebtoken.JwtException;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -32,10 +34,9 @@ public class AuthArgumentResolver implements HandlerMethodArgumentResolver {
 
         try {
             final String accessToken = extractAccessTokenFromHeader(header);
-            jwtProvider.validateAccessToken(accessToken);
-            final Long memberId = Long.valueOf(jwtProvider.getSubject(accessToken));
+            Long memberId = jwtProvider.getMemberId(accessToken);
             return Accessor.member(memberId);
-        } catch (final InvalidTokenException e) {
+        } catch (JwtException e) {
             return Accessor.guest();
         }
     }
@@ -43,7 +44,7 @@ public class AuthArgumentResolver implements HandlerMethodArgumentResolver {
     private String extractAccessTokenFromHeader(String header) {
         final String prefix = "Bearer ";
         if (header == null || !header.startsWith(prefix)) {
-            throw new InvalidTokenException(ErrorCode.INVALID_TOKEN);
+            throw new UnauthorizedException(ErrorCode.TOKEN_NOT_EXIST);
         }
         return header.substring(prefix.length());
     }

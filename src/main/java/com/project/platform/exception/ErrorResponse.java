@@ -27,9 +27,6 @@ public class ErrorResponse {
 
     @Override
     public String toString() {
-        return "ErrorResponse{" +
-                "code='" + code + '\'' +
-                ", message='" + message + '\'' +
-                '}';
+        return String.format("{ code='%s', message='%s' }", code, message);
     }
 }

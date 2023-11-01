@@ -2,7 +2,7 @@ package com.project.platform.domain.auth.controller.resolver;
 
 import com.project.platform.domain.auth.domain.Accessor;
 import com.project.platform.exception.ErrorCode;
-import jakarta.security.auth.message.AuthException;
+import com.project.platform.exception.ForbiddenException;
 import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,7 +20,7 @@ public class MemberOnlyAspect {
                 .map(Accessor.class::cast)
                 .filter(Accessor::isMember)
                 .findFirst()
-                .orElseThrow(() -> new AuthException(ErrorCode.UNAUTHORIZED));
+                .orElseThrow(() -> new ForbiddenException(ErrorCode.ACCESS_DENIED));
     }
 }
 

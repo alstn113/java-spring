@@ -1,11 +1,8 @@
 package com.project.platform.domain.auth.service;
 
 import com.project.platform.domain.auth.domain.JwtTokens;
-import com.project.platform.exception.ErrorCode;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -49,26 +46,14 @@ public class JwtProvider {
                 .compact();
     }
 
-    public void validateAccessToken(final String accessToken) {
-        validateToken(accessToken);
+    public Long getMemberId(final String token) {
+        return Long.valueOf(getSubject(token));
     }
 
-    private void validateToken(final String token) {
-        try {
-            parseToken(token);
-        } catch (ExpiredJwtException e) {
-            throw new ExpiredPeriodJwtException(ErrorCode.EXPIRED_PERIOD_TOKEN);
-        } catch (JwtException | IllegalArgumentException e) {
-            throw new InvalidJwtException(ErrorCode.INVALID_TOKEN);
-        }
-    }
-
-    // getSubject는 token을 파싱하여 subject를 반환한다.
     public String getSubject(final String token) {
         return parseToken(token).getBody().getSubject();
     }
 
-    // parseToken은 token을 파싱하여 Jws<Claims>를 반환한다.
     private Jws<Claims> parseToken(final String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(secretKey)
