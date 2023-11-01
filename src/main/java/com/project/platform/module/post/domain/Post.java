@@ -37,12 +37,11 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<PostLike> postLikes;
 
-
     protected Post() {
     }
 
     public Post(final Long id, final String title, final String content, final Member member,
-                final List<Comment> comments, final List<PostLike> postLikes) {
+            final List<Comment> comments, final List<PostLike> postLikes) {
         this.id = id;
         this.title = title;
         this.content = content;

@@ -5,7 +5,7 @@ import static jakarta.persistence.CascadeType.MERGE;
 import static jakarta.persistence.CascadeType.PERSIST;
 
 import com.project.platform.common.BaseEntity;
-import com.project.platform.module.auth.application.PasswordEncoder;
+import com.project.platform.module.auth.service.PasswordEncoder;
 import com.project.platform.module.comment.domain.Comment;
 import com.project.platform.module.post.domain.Post;
 import jakarta.persistence.Column;
