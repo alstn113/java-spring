@@ -1,8 +1,8 @@
 package com.project.platform.domain.auth.controller.resolver;
 
-import com.project.platform.exception.AuthException;
-import com.project.platform.exception.ErrorCode;
 import com.project.platform.domain.auth.domain.Accessor;
+import com.project.platform.exception.ErrorCode;
+import jakarta.security.auth.message.AuthException;
 import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

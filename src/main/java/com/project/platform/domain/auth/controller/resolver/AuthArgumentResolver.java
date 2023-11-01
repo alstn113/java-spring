@@ -2,10 +2,9 @@ package com.project.platform.domain.auth.controller.resolver;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
-import com.project.platform.exception.ErrorCode;
-import com.project.platform.exception.InvalidTokenException;
 import com.project.platform.domain.auth.domain.Accessor;
 import com.project.platform.domain.auth.service.JwtProvider;
+import com.project.platform.exception.ErrorCode;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;

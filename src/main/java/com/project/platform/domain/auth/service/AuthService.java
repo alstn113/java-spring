@@ -5,8 +5,8 @@ import com.project.platform.domain.auth.dto.request.LoginRequest;
 import com.project.platform.domain.auth.dto.request.SignupRequest;
 import com.project.platform.domain.member.domain.Member;
 import com.project.platform.domain.member.domain.repository.MemberRepository;
-import com.project.platform.exception.AuthException;
 import com.project.platform.exception.ErrorCode;
+import jakarta.security.auth.message.AuthException;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -7,11 +7,11 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class AuthConfig implements WebMvcConfigurer {
 
     private final AuthArgumentResolver authArgumentResolver;
 
-    public WebConfig(AuthArgumentResolver authArgumentResolver) {
+    public AuthConfig(AuthArgumentResolver authArgumentResolver) {
         this.authArgumentResolver = authArgumentResolver;
     }
 

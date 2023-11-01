@@ -9,10 +9,13 @@ public class ErrorResponse {
         this.message = message;
     }
 
-    static ErrorResponse from(final ErrorCode errorCode) {
+    public static ErrorResponse from(final ErrorCode errorCode) {
         return new ErrorResponse(errorCode.getCode(), errorCode.getMessage());
     }
 
+    public static ErrorResponse from(final ErrorCode errorCode, final String errorMessage) {
+        return new ErrorResponse(errorCode.getCode(), errorMessage);
+    }
 
     public String getCode() {
         return code;

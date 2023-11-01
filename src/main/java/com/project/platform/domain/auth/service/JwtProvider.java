@@ -1,9 +1,7 @@
 package com.project.platform.domain.auth.service;
 
-import com.project.platform.exception.ErrorCode;
-import com.project.platform.exception.ExpiredPeriodJwtException;
-import com.project.platform.exception.InvalidJwtException;
 import com.project.platform.domain.auth.domain.JwtTokens;
+import com.project.platform.exception.ErrorCode;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -53,11 +51,6 @@ public class JwtProvider {
 
     public void validateAccessToken(final String accessToken) {
         validateToken(accessToken);
-    }
-
-    public void validateTokens(final String accessToken, final String refreshToken) {
-        validateToken(accessToken);
-        validateToken(refreshToken);
     }
 
     private void validateToken(final String token) {

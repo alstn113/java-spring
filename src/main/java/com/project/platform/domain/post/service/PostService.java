@@ -4,8 +4,8 @@ import com.project.platform.domain.post.domain.Post;
 import com.project.platform.domain.post.domain.repository.PostRepository;
 import com.project.platform.domain.post.dto.request.PostCreateRequest;
 import com.project.platform.domain.post.dto.response.PostResponse;
-import com.project.platform.exception.BadRequestException;
 import com.project.platform.exception.ErrorCode;
+import com.project.platform.exception.NotFoundException;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class PostService {
 
     public PostResponse getPostById(Long id) {
         final Post post = postRepository.findById(id)
-                .orElseThrow(() -> new BadRequestException(ErrorCode.POST_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(ErrorCode.POST_NOT_FOUND));
         return PostResponse.fromPost(post);
     }
 
