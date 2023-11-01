@@ -1,6 +1,6 @@
 package com.project.platform.config;
 
-import com.project.platform.module.auth.controller.resolver.AuthArgumentResolver;
+import com.project.platform.domain.auth.controller.resolver.AuthArgumentResolver;
 import java.util.List;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
