@@ -32,7 +32,7 @@ public class PostLikeService {
         final boolean isAlreadyLiked = postLikeRepository.existsByPostIdAndMemberId(post.getId(),
                 member.getId());
         if (!isAlreadyLiked) {
-            postLikeRepository.save(new PostLike(post, member));
+            postLikeRepository.save(new PostLike(post.getId(), member.getId()));
         }
     }
 
