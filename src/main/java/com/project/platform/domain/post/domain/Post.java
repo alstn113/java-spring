@@ -21,7 +21,7 @@ public class Post extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 300)
+    @Column(nullable = false, unique = true, length = 300)
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
@@ -50,8 +50,8 @@ public class Post extends BaseEntity {
         this.postLikes = postLikes;
     }
 
-    public Post(final String title, final String content) {
-        this(null, title, content, null, null, null);
+    public Post(final String title, final String content, Member member) {
+        this(null, title, content, member, null, null);
     }
 
     public Long getId() {

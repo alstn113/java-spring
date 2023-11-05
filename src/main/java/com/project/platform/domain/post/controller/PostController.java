@@ -1,5 +1,8 @@
 package com.project.platform.domain.post.controller;
 
+import com.project.platform.domain.auth.controller.resolver.Auth;
+import com.project.platform.domain.auth.controller.resolver.MemberOnly;
+import com.project.platform.domain.auth.domain.Accessor;
 import com.project.platform.domain.post.dto.request.PostCreateRequest;
 import com.project.platform.domain.post.dto.response.PostResponse;
 import com.project.platform.domain.post.service.PostService;
@@ -24,8 +27,10 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponse> createPost(@RequestBody PostCreateRequest postCreateRequest) {
-        final PostResponse postResponse = postService.createPost(postCreateRequest);
+    @MemberOnly
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostCreateRequest postCreateRequest,
+                                                   @Auth Accessor accessor) {
+        final PostResponse postResponse = postService.createPost(postCreateRequest, accessor);
         return ResponseEntity.ok(postResponse);
     }
 
@@ -35,15 +40,16 @@ public class PostController {
         return ResponseEntity.ok(postResponses);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PostResponse> getPostById(@PathVariable Long id) {
-        final PostResponse postResponse = postService.getPostById(id);
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostResponse> getPostById(@PathVariable Long postId) {
+        final PostResponse postResponse = postService.getPostById(postId);
         return ResponseEntity.ok(postResponse);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+    @DeleteMapping("/{postId}")
+    @MemberOnly
+    public ResponseEntity<Void> deletePost(@PathVariable Long postId, @Auth Accessor accessor) {
+        postService.deletePostById(postId, accessor);
         return ResponseEntity.ok().build();
     }
 }

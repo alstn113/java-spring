@@ -12,8 +12,10 @@ public enum ErrorCode {
     EMAIL_NOT_FOUND("M002", "존재하지 않는 이메일입니다."),
     PASSWORD_NOT_MATCHED("M003", "비밀번호가 일치하지 않습니다."),
 
-    POST_NOT_FOUND("P001", "존재하지 않는 게시글입니다.");
-    
+    POST_NOT_FOUND("P001", "존재하지 않는 게시글입니다."),
+    POST_TITLE_EXISTS("P002", "이미 존재하는 게시글 제목입니다."),
+    POST_NOT_AUTHOR("P003", "해당 게시글의 작성자가 아닙니다.");
+
     private final String code;
     private final String message;
 
