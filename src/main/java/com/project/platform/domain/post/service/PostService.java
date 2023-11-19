@@ -12,8 +12,10 @@ import com.project.platform.exception.ErrorCode;
 import com.project.platform.exception.NotFoundException;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class PostService {
 
     private final PostRepository postRepository;
@@ -24,6 +26,7 @@ public class PostService {
         this.memberService = memberService;
     }
 
+    @Transactional
     public PostResponse createPost(PostCreateRequest postCreateRequest, Accessor accessor) {
         final Member member = memberService.getMemberByIdOrElseThrow(accessor.getMemberId());
         validateIsPostTitleDuplicate(postCreateRequest.title());
@@ -45,6 +48,7 @@ public class PostService {
         return PostResponse.fromPost(post);
     }
 
+    @Transactional
     public void deletePostById(Long postId, Accessor accessor) {
         final Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new NotFoundException(ErrorCode.POST_NOT_FOUND));

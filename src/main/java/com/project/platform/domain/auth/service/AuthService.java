@@ -10,8 +10,10 @@ import com.project.platform.exception.ErrorCode;
 import com.project.platform.exception.NotFoundException;
 import com.project.platform.exception.UnauthorizedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class AuthService {
     private final MemberRepository memberRepository;
     private final JwtProvider jwtProvider;
@@ -23,6 +25,7 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public Member signup(final SignupRequest signupRequest) {
         if (memberRepository.existsByEmail(signupRequest.email())) {
             throw new ConflictException(ErrorCode.EMAIL_ALREADY_EXISTS);

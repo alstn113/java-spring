@@ -8,8 +8,10 @@ import com.project.platform.domain.post.domain.repository.PostRepository;
 import com.project.platform.exception.ErrorCode;
 import com.project.platform.exception.NotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class PostLikeService {
     private final PostRepository postRepository;
     private final PostLikeRepository postLikeRepository;
@@ -20,6 +22,7 @@ public class PostLikeService {
         this.postLikeRepository = postLikeRepository;
     }
 
+    @Transactional
     public void likePost(Long postId, Accessor accessor) {
         final Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundException(ErrorCode.POST_NOT_FOUND)
@@ -31,6 +34,8 @@ public class PostLikeService {
         }
     }
 
+
+    @Transactional
     public void unlikePost(Long postId, Accessor accessor) {
         final Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundException(ErrorCode.POST_NOT_FOUND)
