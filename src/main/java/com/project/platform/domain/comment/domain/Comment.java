@@ -1,12 +1,17 @@
 package com.project.platform.domain.comment.domain;
 
-import com.project.platform.domain.post.domain.Post;
-import com.project.platform.domain.member.domain.Member;
-import jakarta.persistence.*;
-
-import java.util.Objects;
-
 import static java.util.Objects.hash;
+
+import com.project.platform.domain.member.domain.Member;
+import com.project.platform.domain.post.domain.Post;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import java.util.Objects;
 
 @Entity
 public class Comment {
@@ -15,7 +20,7 @@ public class Comment {
     private Long id;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
+    private String text;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -29,14 +34,14 @@ public class Comment {
     protected Comment() {
     }
 
-    public Comment(final Long id, final String content, final Post post) {
+    public Comment(final Long id, final String text, final Post post) {
         this.id = id;
-        this.content = content;
+        this.text = text;
         this.post = post;
     }
 
-    public Comment(final String content, final Post post) {
-        this(null, content, post);
+    public Comment(final String text, final Post post) {
+        this(null, text, post);
     }
 
     public Long getId() {
@@ -44,7 +49,7 @@ public class Comment {
     }
 
     public String getContent() {
-        return content;
+        return text;
     }
 
     public Post getPost() {
