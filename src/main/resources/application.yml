@@ -13,6 +13,7 @@ spring:
       hibernate.dialect: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+    show-sql: true
   auth:
     jwt:
       secretKey: jwt-secret-key-1234567890-jwt-secret-key-!@#$%^&*()_+
