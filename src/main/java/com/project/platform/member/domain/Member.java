@@ -4,9 +4,9 @@ package com.project.platform.member.domain;
 import static jakarta.persistence.CascadeType.MERGE;
 import static jakarta.persistence.CascadeType.PERSIST;
 
-import com.project.platform.global.common.domain.BaseEntity;
 import com.project.platform.auth.service.PasswordEncoder;
 import com.project.platform.comment.domain.Comment;
+import com.project.platform.global.common.domain.BaseEntity;
 import com.project.platform.post.domain.Post;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
