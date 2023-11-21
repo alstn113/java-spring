@@ -28,7 +28,7 @@ public enum ProductCategory {
             ProductSubCategory.BACKPACK,
             ProductSubCategory.TOTE_BAG,
     }),
-    NONE("없음", new ProductSubCategory[]{});
+    NONE("기타", new ProductSubCategory[]{});
 
     private final String viewName;
     private final ProductSubCategory[] subCategories;
